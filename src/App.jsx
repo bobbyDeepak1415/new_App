@@ -2,7 +2,7 @@
 
 function App() {
   return (
-    <div className="h-[100vh] bg-slate-500">
+    <div >
       <h1 className="text-2xl">Hello</h1>
     </div>
   );
