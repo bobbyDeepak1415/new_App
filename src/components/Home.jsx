@@ -1,12 +1,6 @@
-// import React, { useState } from 'react'
 
 const Home = ({setEmail,setName,name,email}) => {
 
-// const setEmail=props.setEmail
-// const setName=props.setName
-
-// const name=props.name 
-// const email=props.email
 
 
 
