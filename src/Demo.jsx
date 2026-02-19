@@ -5,7 +5,7 @@ const Demo = () => {
     name: "",
     email: "",
     role: "",
-    terms: "",
+    terms: false,
   });
 
   const [page, setPage] = useState(1);
@@ -52,7 +52,15 @@ const Demo = () => {
             <option value="manager">Manager</option>
           </select>
           <span>Agree terms and conditions:</span>
-          <input type="checkbox" value={formData.} onChange={}></input>
+          <input
+            type="checkbox"
+            value={formData.terms}
+            onChange={(e) =>
+              setFormData({ ...formData, terms: e.target.checked })
+            }
+          ></input>
+          <button onClick={()=>setPage(1)}>Back</button>
+          <button onClick={()=>setSubmitted(true)}>Next</button>
         </div>
       )}
     </div>
