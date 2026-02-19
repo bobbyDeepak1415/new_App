@@ -26,10 +26,24 @@ const Demo = () => {
               setFormData({ ...formData, email: e.target.value })
             }
           ></input>
+          <button onClick={() => setPage(2)}>Next</button>
         </div>
       )}
-      {page===2 && (
-        <div></div>
+      {page === 2 && (
+        <div>
+          <select
+            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+            value={formData.role}
+          >
+            <option>Select ypur role</option>
+            <option value="developer">Developer</option>
+            <option value="designer">Designer</option>
+            <option value="manager">Manager</option>
+          </select>
+          <input type="checkbox"></input>
+          <button onClick={()=>setPage(1)}>Prev</button>
+          <button onClick={()=>setSubmitted(true)}>Next</button>
+        </div>
       )}
     </div>
   );
