@@ -35,17 +35,24 @@ const Demo = () => {
             }
             name=""
           ></input>
-          <button
-            onClick={() => setPage(2)}
-            disabled={!isStep1Valid}
-          >
+          <button onClick={() => setPage(2)} disabled={!isStep1Valid}>
             Next{" "}
           </button>
         </div>
       )}
-      {page===2 &&(
+      {page === 2 && (
         <div>
-
+          <select
+            value={formData.role}
+            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+          >
+            <option>Select Your Role</option>
+            <option value="developer">Developer</option>
+            <option value="designer">designer</option>
+            <option value="manager">Manager</option>
+          </select>
+          <span>Agree terms and conditions:</span>
+          <input type="checkbox" value={formData.} onChange={}></input>
         </div>
       )}
     </div>
