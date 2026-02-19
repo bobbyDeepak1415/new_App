@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 const Demo = () => {
   return <h2>Hello</h2>
