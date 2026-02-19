@@ -15,6 +15,17 @@ const Demo = () => {
   const isStep1Valid = formData.name && formData.email;
   const isStep2Valid = formData.role && formData.terms;
 
+  if(submitted){
+    return (
+      <div>
+        <li>{formData.name}</li>
+        <li>{formData.email}</li>
+        <li>{formData.role}</li>
+        <span>agreed to terms:</span><li>{formData.terms}</li>
+      </div>
+    )
+  }
+
   return (
     <div>
       {page === 1 && (
@@ -60,7 +71,7 @@ const Demo = () => {
             }
           ></input>
           <button onClick={()=>setPage(1)}>Back</button>
-          <button onClick={()=>setSubmitted(true)}>Next</button>
+          <button disabled={!isStep2Valid} onClick={()=>setSubmitted(true)}>Next</button>
         </div>
       )}
     </div>
