@@ -43,6 +43,11 @@ const Demo = () => {
           </button>
         </div>
       )}
+      {page===2 &&(
+        <div>
+
+        </div>
+      )}
     </div>
   );
 };
