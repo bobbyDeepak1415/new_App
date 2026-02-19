@@ -11,8 +11,8 @@ const Demo = () => {
 
   const [submitted, setSubmitted] = useState(false);
 
-  const isStep1Valid = formData.name && formData.email;
-  const isStep2Valid = formData.role && formData.terms;
+  // const isStep1Valid = formData.name && formData.email;
+  const isStep2Valid = formData.role || formData.terms;
 
   if (submitted) {
     return (
@@ -39,7 +39,10 @@ const Demo = () => {
               setFormData({ ...formData, email: e.target.value })
             }
           ></input>
-          <button disabled={!isStep1Valid} onClick={() => setPage(2)}>
+          <button
+            disabled={!formData.name || !formData.email}
+            onClick={() => setPage(2)}
+          >
             Next
           </button>
         </div>
