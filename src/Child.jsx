@@ -1,6 +1,8 @@
 import React from "react";
 
 const Child = () => {
+  console.log("child is rendering...");
+
   return (
     <div>
       <h1>Hello from child</h1>
@@ -8,4 +10,4 @@ const Child = () => {
   );
 };
 
-export default Child;
+export default React.memo(Child)
