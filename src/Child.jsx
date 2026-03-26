@@ -4,7 +4,7 @@ const Child = (props) => {
 
   return (
     <div>
-      <h1>Hello from child : {props.count}</h1>
+      <h1>Hello from child :{props.input}</h1>
     </div>
   );
 };
