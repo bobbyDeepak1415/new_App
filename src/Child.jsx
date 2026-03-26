@@ -1,3 +1,4 @@
+import { memo } from "react";
 const Child = (props) => {
   console.log("child is rendering...");
 
@@ -8,4 +9,4 @@ const Child = (props) => {
   );
 };
 
-export default Child;
+export default memo(Child);
