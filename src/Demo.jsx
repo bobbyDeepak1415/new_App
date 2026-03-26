@@ -11,6 +11,7 @@ const Demo = () => {
 
       <button onClick={() => setCount(count + 1)}>click</button>
       <input value={input} onChange={(e) => setInput(e.target.value)} />
+      {input}
       <Child count={count}/>
     </div>
   );

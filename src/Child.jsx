@@ -1,13 +1,11 @@
-import React, { memo } from "react";
-
-const Child = ({ count }) => {
+const Child = (props) => {
   console.log("child is rendering...");
 
   return (
     <div>
-      <h1>Hello from child : </h1>
+      <h1>Hello from child : {props.count}</h1>
     </div>
   );
 };
 
-export default memo(Child);
+export default Child;
