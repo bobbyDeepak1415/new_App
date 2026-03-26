@@ -10,10 +10,12 @@ const Demo = () => {
   //   handleClick(setCount);
   // }, [setCount]);
 
+  let num = 10;
+
   const expensiveValue = useMemo(() => {
     console.log("calculating...");
-    return count * 1000;
-  }, [count]);
+    return num * 1000;
+  }, [num]);
 
   return (
     <div>
@@ -25,7 +27,7 @@ const Demo = () => {
 
       <input value={input} onChange={(e) => setInput(e.target.value)} />
       {input}
-      <Child input={input}/>
+      <Child input={input} />
     </div>
   );
 };
