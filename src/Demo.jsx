@@ -1,16 +1,17 @@
 import { useCallback, useMemo, useState } from "react";
-// import Child from "./Child";
+import Child from "./Child";
 import handleClick from "./handleClick";
 
 const Demo = () => {
   const [count, setCount] = useState(0);
-  // const [input, setInput] = useState("");
+  const [input, setInput] = useState("");
 
-  const memoizedClick = useCallback(() => {
-    handleClick(setCount);
-  }, [setCount]);
+  // const memoizedClick = useCallback(() => {
+  //   handleClick(setCount);
+  // }, [setCount]);
 
   const expensiveValue = useMemo(() => {
+    console.log("calculating...");
     return count * 1000;
   }, [count]);
 
@@ -20,11 +21,11 @@ const Demo = () => {
       <h2>ComputedValue:{count}</h2>
       <h2>MemoizedValue:{expensiveValue}</h2>
 
-      <button onClick={memoizedClick}>click</button>
+      <button onClick={() => handleClick(setCount)}>click</button>
 
-      {/* <input value={input} onChange={(e) => setInput(e.target.value)} />
+      <input value={input} onChange={(e) => setInput(e.target.value)} />
       {input}
-      <Child count={count} /> */}
+      <Child count={count} />
     </div>
   );
 };
