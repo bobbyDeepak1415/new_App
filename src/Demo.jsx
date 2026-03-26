@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 // import Child from "./Child";
 import handleClick from "./handleClick";
 
@@ -10,9 +10,15 @@ const Demo = () => {
     handleClick(setCount);
   }, [setCount]);
 
+  const expensiveValue = useMemo(() => {
+    setCount();
+  }, [setCount]);
+
   return (
     <div>
-      <h1>Hello from parent {count}</h1>
+      <h1>Hello from parent</h1>
+      <h2>ComputedValue:{count}</h2>
+      <h2>MemoizedValue:{expensiveValue}</h2>
 
       <button onClick={memoizedClick}>click</button>
 
