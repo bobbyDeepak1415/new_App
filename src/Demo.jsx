@@ -11,7 +11,7 @@ const Demo = () => {
   }, [setCount]);
 
   const expensiveValue = useMemo(() => {
-    setCount();
+    setCount(prev=>prev*1000);
   }, [setCount]);
 
   return (
