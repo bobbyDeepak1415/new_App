@@ -1,10 +1,10 @@
 import { useCallback, useState } from "react";
-import Child from "./Child";
+// import Child from "./Child";
 import handleClick from "./handleClick";
 
 const Demo = () => {
   const [count, setCount] = useState(0);
-  const [input, setInput] = useState("");
+  // const [input, setInput] = useState("");
 
   const memoizedClick = useCallback(() => {
     handleClick(setCount);
@@ -16,9 +16,9 @@ const Demo = () => {
 
       <button onClick={memoizedClick}>click</button>
 
-      <input value={input} onChange={(e) => setInput(e.target.value)} />
+      {/* <input value={input} onChange={(e) => setInput(e.target.value)} />
       {input}
-      <Child count={count} />
+      <Child count={count} /> */}
     </div>
   );
 };
