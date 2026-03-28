@@ -4,16 +4,16 @@ const initialState = {
   count: 0,
 };
 
-function reducer(state, action) {
-  switch (action.type) {
+function reducer(state, task) {
+  switch (task.type) {
     case "increment":
       return { count: state.count + 1 };
 
-    case "decremen":
+    case "decrement":
       return { count: state.count - 1 };
 
     case "reset":
-      return { count: 0 };
+      return initialState;
   }
 }
 
