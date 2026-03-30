@@ -12,16 +12,13 @@
 //   </StrictMode>,
 // );
 
-
-function display(func){
-  func()
+function display(func) {
+  func();
+  func();
 }
 
-
-function printName(){
-  const name="Bobby"
-  return name
-
+function printName() {
+  return "Bobby Deepak";
 }
 
-display(printName)
+display(printName);
