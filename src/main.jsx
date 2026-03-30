@@ -13,16 +13,15 @@
 // );
 
 
-function display(str){
-  return `"Mr."${str}`
+function display(func){
+  func()
 }
 
 
 function printName(){
   const name="Bobby"
-  display(name)
+  return name
 
 }
 
-
-console.log(printName())
+display(printName)
