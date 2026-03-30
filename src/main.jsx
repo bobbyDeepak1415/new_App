@@ -12,13 +12,8 @@
 //   </StrictMode>,
 // );
 
-function display() {
-  console.log("Bobby Deepak");
-}
 
-function printName(action) {
-  action();
-  action();
-}
+const nums=[1,2,3,4,5,6]
 
-printName(display);
+
+console.log(nums.filter((num)=>num%2===0))
