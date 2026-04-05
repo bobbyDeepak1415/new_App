@@ -1,19 +1,18 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Child from "./Child";
 
 const Demo = () => {
   const [count, setCount] = useState(0);
 
-  console.log("parent rendering...")
-
-  const handleClick = () => {
-    setCount(prev=>prev+1);
-  };
+  console.log("parent rendering...");
+  const dispatch = useCallback(() => {
+    setCount();
+  }, [setCount]);
 
   return (
     <div>
       <p>Parent count is at: {count}</p>
-      <button onClick={handleClick}>click</button>
+      <button onClick={dispatch}>click</button>
       <Child />
     </div>
   );
