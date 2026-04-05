@@ -15,9 +15,9 @@ const Demo = () => {
   return (
     <div>
       <p>Parent count is at: {count}</p>
-      <button onClick={dispatch}>click</button>
+      <button onClick={()=>setCount(count+1)}>click</button>
       <p>{item}</p>
-      <button onClick={() => setCount((prev) => prev + 1)}>click</button>
+      <button onClick={dispatch}>click</button>
       <Child />
     </div>
   );

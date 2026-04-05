@@ -1,5 +1,5 @@
 
 
-export const handleClick=(setCount)=>{
-setCount(prev=>prev+9837)
+export const handleClick=(setItem)=>{
+setItem(prev=>prev*100)
 }
