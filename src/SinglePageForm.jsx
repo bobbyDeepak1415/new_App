@@ -7,18 +7,21 @@ const SinglePageForm = () => {
 
   const handleChange = (e) => {
     // console.log(e.target);
-    
-    const {name,value}=e.target
-    
-    setFormValues({...formValues,name:value})
-    setFormValues({...formValues,[name]:value})
-    
+
+    const { name, value } = e.target;
+
+    setFormValues({ ...formValues, [name]: value });
+
     console.log(formValues);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
     <div className="container bg-gray">
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1>Login Form:</h1>
         <div className="ui form">
           <div className="ui field">
