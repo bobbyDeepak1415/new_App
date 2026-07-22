@@ -24,16 +24,22 @@ const SinglePageForm = () => {
   const validate = (values) => {
     const errors = {};
 
-    // const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!values.username) {
       errors.username = "username is required";
     }
     if (!values.email) {
       errors.email = "email is required";
+    } else if (!emailRegex.test(values.email)) {
+      errors.email = "this is not a valid email format";
     }
     if (!values.password) {
       errors.password = "password is required";
+    } else if (!passwordRegex.test(values.password)) {
+      errors.password = "this is not a valid password format";
     }
     return errors;
   };
