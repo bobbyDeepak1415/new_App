@@ -27,7 +27,7 @@ const SinglePageForm = () => {
       errors.email = "email is required";
     }
     if (!values.password) {
-      errors.username = "password is required";
+      errors.password = "password is required";
     }
     return errors;
   };
