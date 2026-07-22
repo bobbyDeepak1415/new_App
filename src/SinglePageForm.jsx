@@ -5,16 +5,36 @@ const SinglePageForm = () => {
 
   const [formValues, setFormValues] = useState(initialValues);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const [formErrors, setFormErrors] = useState({});
 
-    setFormValues({ ...formValues, [name]: value });
-
-    console.log(formValues);
-  };
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmit(true);
+  };
+
+  const validate = (values) => {
+    const errors = {};
+
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!values.userName) {
+      errors.username = "username is required";
+    }
+    if (!values.email) {
+      errors.email = "email is required";
+    }
+    if (!values.password) {
+      errors.username = "password is required";
+    }
+    return errors;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
   };
 
   return (
@@ -22,7 +42,7 @@ const SinglePageForm = () => {
       <form onSubmit={handleSubmit}>
         <h1>Login Form:</h1>
 
-<pre>{JSON.stringify(formValues,undefined,2)}</pre>
+        <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
 
         <div className="ui form">
           <div className="ui field">
