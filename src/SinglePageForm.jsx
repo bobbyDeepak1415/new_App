@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const SinglePageForm = () => {
   const initialValues = { username: "", password: "", email: "" };
@@ -9,6 +9,12 @@ const SinglePageForm = () => {
 
   const [isSubmit, setIsSubmit] = useState(false);
 
+  // useEffect(()=>{
+  //   if(Object.keys(formErrors).length===0 && isSubmit){
+  //     console.log(formValues)
+  //   }
+  // },[formErrors,isSubmit,formValues])
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
@@ -18,9 +24,9 @@ const SinglePageForm = () => {
   const validate = (values) => {
     const errors = {};
 
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (!values.userName) {
+    if (!values.username) {
       errors.username = "username is required";
     }
     if (!values.email) {
@@ -55,6 +61,7 @@ const SinglePageForm = () => {
               onChange={handleChange}
             />
           </div>
+          <p>{formErrors.username}</p>
           <div className="ui field">
             <label>Email:</label>
             <input
@@ -65,16 +72,18 @@ const SinglePageForm = () => {
               placeholder="Email"
             />
           </div>
+          <p>{formErrors.email}</p>
           <div className="ui field">
             <label>Password:</label>
             <input
               onChange={handleChange}
               type="password"
-              value={formValues.email}
+              value={formValues.password}
               name="password"
               placeholder="Password"
             />
           </div>
+          <p>{formErrors.password}</p>
 
           <button>Submit</button>
         </div>
