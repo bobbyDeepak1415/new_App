@@ -6,8 +6,6 @@ const SinglePageForm = () => {
   const [formValues, setFormValues] = useState(initialValues);
 
   const handleChange = (e) => {
-    // console.log(e.target);
-
     const { name, value } = e.target;
 
     setFormValues({ ...formValues, [name]: value });
@@ -23,6 +21,9 @@ const SinglePageForm = () => {
     <div className="container bg-gray">
       <form onSubmit={handleSubmit}>
         <h1>Login Form:</h1>
+
+<pre>{JSON.stringify(formValues,undefined,2)}</pre>
+
         <div className="ui form">
           <div className="ui field">
             <label>UserName:</label>
