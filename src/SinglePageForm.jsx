@@ -19,24 +19,24 @@ const SinglePageForm = () => {
     setFormErrors(validate(formValues));
   };
 
-  const validate = (values) => {
+  const validate = (formValues) => {
     const errors = {};
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordRegex = /^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/;
 
-    if (!values.username) {
+    if (!formValues.username) {
       errors.username = "user name required";
     }
 
-    if (!values.email) {
+    if (!formValues.email) {
       errors.email = "email required";
-    } else if (!emailRegex.test(values.email)) {
+    } else if (!emailRegex.test(formValues.email)) {
       errors.email = "invalid email format";
     }
-    if (!values.password) {
+    if (!formValues.password) {
       errors.email = "email required";
-    } else if (!passwordRegex.test(values.password)) {
+    } else if (!passwordRegex.test(formValues.password)) {
       errors.password = "invalid password format";
     }
 
@@ -65,7 +65,7 @@ const SinglePageForm = () => {
             <label>Email:</label>
             <input
               onChange={handleChange}
-              type="email"
+              // type="email"
               placeholder="Email"
               name="email"
               value={formValues.email}
