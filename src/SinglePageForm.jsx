@@ -7,6 +7,8 @@ const SinglePageForm = () => {
 
   const [formErrors, setFormErrors] = useState({});
 
+  const [isSubmit, setIsSubmit] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
