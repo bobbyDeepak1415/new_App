@@ -27,10 +27,12 @@ const SinglePageForm = () => {
       errors.email = "Invalid email format";
     }
     if (!formValues.password) {
-      errors.email = "password required";
+      errors.password = "password required";
     } else if (!passwordRegex.test(formValues.password)) {
       errors.password = "Invalid password format";
     }
+
+    return errors;
   };
 
   const handleChange = (e) => {
@@ -54,6 +56,8 @@ const SinglePageForm = () => {
               placeholder="Username"
               onChange={handleChange}
             />
+
+            <p>{formErrors.username}</p>
           </div>
           <div>
             <label>Email:</label>
@@ -64,6 +68,7 @@ const SinglePageForm = () => {
               placeholder="email"
               onChange={handleChange}
             />
+            <p>{formErrors.email}</p>
           </div>
           <div>
             <label>Password:</label>
@@ -74,6 +79,7 @@ const SinglePageForm = () => {
               placeholder="password"
               onChange={handleChange}
             />
+            <p>{formErrors.password}</p>
           </div>
           <button>Regisder</button>
         </div>
