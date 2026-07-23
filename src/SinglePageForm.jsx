@@ -7,22 +7,30 @@ const SinglePageForm = () => {
 
   const [formErrors, setFormErrors] = useState({});
 
-  // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  // const passwordRegex = /^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
   };
 
   const validate = (formValues) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordRegex = /^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/;
 
-const errors={}
+    const errors = {};
 
-if(!formValues.username){
-  errors.username="username required"
-}
-
+    if (!formValues.username) {
+      errors.username = "username required";
+    }
+    if (!formValues.email) {
+      errors.email = "email required";
+    } else if (!emailRegex.test(formValues.email)) {
+      errors.email = "Invalid email format";
+    }
+    if (!formValues.password) {
+      errors.email = "password required";
+    } else if (!passwordRegex.test(formValues.password)) {
+      errors.password = "Invalid password format";
+    }
   };
 
   const handleChange = (e) => {
