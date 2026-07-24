@@ -12,6 +12,7 @@ const SinglePageForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
+    setIsSubmit(true);
   };
 
   const validate = (formValues) => {
@@ -44,48 +45,55 @@ const SinglePageForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className="user form">
-          <h1>User Form</h1>
-          <div className="ui field">
-            <label>UserName:</label>
+    <div className="container">
+      {isSubmit ? (
+        <p>
+          You ave logged in
+          {JSON.stringify(formValues, 2, undefined)}
+        </p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className="user form">
+            <h1>User Form</h1>
+            <div className="ui field">
+              <label>UserName:</label>
 
-            <input
-              type="text"
-              name="username"
-              value={formValues.username}
-              placeholder="Username"
-              onChange={handleChange}
-            />
+              <input
+                type="text"
+                name="username"
+                value={formValues.username}
+                placeholder="Username"
+                onChange={handleChange}
+              />
 
-            <p>{formErrors.username}</p>
+              <p>{formErrors.username}</p>
+            </div>
+            <div>
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={formValues.email}
+                placeholder="email"
+                onChange={handleChange}
+              />
+              <p>{formErrors.email}</p>
+            </div>
+            <div>
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={formValues.password}
+                placeholder="password"
+                onChange={handleChange}
+              />
+              <p>{formErrors.password}</p>
+            </div>
+            <button>Regisder</button>
           </div>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={formValues.email}
-              placeholder="email"
-              onChange={handleChange}
-            />
-            <p>{formErrors.email}</p>
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={formValues.password}
-              placeholder="password"
-              onChange={handleChange}
-            />
-            <p>{formErrors.password}</p>
-          </div>
-          <button>Regisder</button>
-        </div>
-      </form>
+        </form>
+      )}
     </div>
   );
 };
