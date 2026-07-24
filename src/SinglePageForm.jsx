@@ -46,12 +46,13 @@ const SinglePageForm = () => {
 
   return (
     <div className="container">
-      {isSubmit ? (
+      {/* {isSubmit ? (
         <p>
           You ave logged in
-          {JSON.stringify(formValues, 2, undefined)}
-        </p>
-      ) : (
+          {/* {JSON.stringify(formValues, 2, undefined)} */}
+          {formValues.username}
+        {/* </p> */}
+     {/* ) : ( */}
         <form onSubmit={handleSubmit}>
           <div className="user form">
             <h1>User Form</h1>
@@ -93,7 +94,7 @@ const SinglePageForm = () => {
             <button>Regisder</button>
           </div>
         </form>
-      )}
+      {/* // )} */}
     </div>
   );
 };
