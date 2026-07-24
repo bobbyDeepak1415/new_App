@@ -11,8 +11,12 @@ const SinglePageForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     setFormErrors(validate(formValues));
-    setIsSubmit(true);
+
+    if (Object.keys(validate(formValues)).length===0) {
+      setIsSubmit(true);
+    }
   };
 
   const validate = (formValues) => {
@@ -46,13 +50,13 @@ const SinglePageForm = () => {
 
   return (
     <div className="container">
-      {/* {isSubmit ? (
+      {isSubmit ? (
         <p>
           You ave logged in
           {/* {JSON.stringify(formValues, 2, undefined)} */}
           {formValues.username}
-        {/* </p> */}
-     {/* ) : ( */}
+        </p>
+      ) : (
         <form onSubmit={handleSubmit}>
           <div className="user form">
             <h1>User Form</h1>
@@ -91,10 +95,10 @@ const SinglePageForm = () => {
               />
               <p>{formErrors.password}</p>
             </div>
-            <button>Regisder</button>
+            <button>Register</button>
           </div>
         </form>
-      {/* // )} */}
+      )}
     </div>
   );
 };
