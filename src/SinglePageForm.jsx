@@ -1,108 +1,61 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 const SinglePageForm = () => {
-  const initialValues = { username: "", email: "", password: "" };
 
-  const [formValues, setFormValues] = useState(initialValues);
+  const initialValues={username:"",email:"",password:""}
 
-  const [formErrors, setFormErrors] = useState({});
 
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [formValues,setFormValues]=useState(initialValues)
+  const [formErrors,setFormErrors]=useState({})
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleChange=(e)=>{
+const {name,value}=e.target
 
-    const errors = validate(formValues);
+setFormValues({...formValues,[name]:value})
 
-    setFormErrors(errors);
 
-    if (Object.keys(errors).length === 0) {
-      setIsSubmit(true);
-    }
-  };
+  }
 
-  const validate = (formValues) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const passwordRegex = /^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/;
+  const validate=()=>{
 
-    const errors = {};
+  }
 
-    if (!formValues.username) {
-      errors.username = "username required";
-    }
-    if (!formValues.email) {
-      errors.email = "email required";
-    } else if (!emailRegex.test(formValues.email)) {
-      errors.email = "Invalid email format";
-    }
-    if (!formValues.password) {
-      errors.password = "password required";
-    } else if (!passwordRegex.test(formValues.password)) {
-      errors.password = "Invalid password format";
-    }
+  const handleSubmit=(e)=>{
 
-    return errors;
-  };
+    const 
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+e.preventDefault()
+validate(setFormErrors())
 
-    setFormValues({ ...formValues, [name]: value });
-  };
+
+  }
+
+
 
   return (
-    <div className="container">
-      {isSubmit ? (
-        <p>
-          You have logged in successfully
-          <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
-          {/* {formValues.username} */}
-        </p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div className="user form">
-            <h1>User Form</h1>
-            <div className="ui field">
-              <label>UserName:</label>
+    <div className='form container'>
+<div>
 
-              <input
-                type="text"
-                name="username"
-                value={formValues.username}
-                placeholder="Username"
-                onChange={handleChange}
-              />
+      <form onSubmit={handleSubmit}>
+        <h1>User Form</h1>
+        <div>
+          <label>Username:</label>
+          <input value={formValues.username} name="username" type='text' placeholder='username' onChange={handleChange}/>
+        </div>
+        <div>
+          <label>Email:</label>
+          <input value={formValues.email} name="email" type='email' placeholder='email' onChange={handleChange}/>
+        </div>
+        <div>
+          <label>Password:</label>
+          <input value={formValues.password} name="password" type='password' placeholder='password' onChange={handleChange}/>
+        </div>
+        <button onClick={}>Login</button>
 
-              <p>{formErrors.username}</p>
-            </div>
-            <div>
-              <label>Email:</label>
-              <input
-                type="email"
-                name="email"
-                value={formValues.email}
-                placeholder="email"
-                onChange={handleChange}
-              />
-              <p>{formErrors.email}</p>
-            </div>
-            <div>
-              <label>Password:</label>
-              <input
-                type="password"
-                name="password"
-                value={formValues.password}
-                placeholder="password"
-                onChange={handleChange}
-              />
-              <p>{formErrors.password}</p>
-            </div>
-            <button>Register</button>
-          </div>
-        </form>
-      )}
+      </form>
+</div>
     </div>
-  );
-};
+  )
+}
 
-export default SinglePageForm;
+export default SinglePageForm
