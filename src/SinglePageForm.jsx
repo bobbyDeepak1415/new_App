@@ -5,6 +5,7 @@ const SinglePageForm = () => {
 
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,63 +23,77 @@ const SinglePageForm = () => {
     }
     if (!formValues.email) {
       errors.email = "email required";
-    } else if (!emailRegex.test(formErrors.email)) {
+    } else if (!emailRegex.test(formValues.email)) {
       errors.email = "Invalid email format";
     }
     if (!formValues.password) {
       errors.password = "password required";
-    } else if (!passwordRegex.test(formErrors.password)) {
+    } else if (!passwordRegex.test(formValues.password)) {
       errors.password = "Invalid password format";
     }
 
-    return errors
+    return errors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+
+    const errors = validate(formValues);
+
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      setIsSubmit(true);
+    }
   };
 
   return (
     <div className="form container">
       <div>
-        <form onSubmit={handleSubmit}>
-          <h1>User Form</h1>
-          <div>
-            <label>Username:</label>
-            <input
-              value={formValues.username}
-              name="username"
-              type="text"
-              placeholder="username"
-              onChange={handleChange}
-            />
-          </div>
-          <p  style={{color:"red"}}>{formErrors.username}</p>
-          <div>
-            <label>Email:</label>
-            <input
-              value={formValues.email}
-              name="email"
-              type="email"
-              placeholder="email"
-              onChange={handleChange}
-            />
-          </div>
-          <p style={{color:"red"}}>{formErrors.email}</p>
-          <div>
-            <label>Password:</label>
-            <input
-              value={formValues.password}
-              name="password"
-              type="password"
-              placeholder="password"
-              onChange={handleChange}
-            />
-          </div>
-          <p style={{color:"red"}}>{formErrors.password}</p>
-          <button>Login</button>
-        </form>
+        {isSubmit ? (
+          <>
+            <h2>You have Logged in</h2>
+            {JSON.stringify(formValues, undefined, 2)}
+          </>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <h1>User Form</h1>
+            <div>
+              <label>Username:</label>
+              <input
+                value={formValues.username}
+                name="username"
+                type="text"
+                placeholder="username"
+                onChange={handleChange}
+              />
+            </div>
+            <p style={{ color: "red" }}>{formErrors.username}</p>
+            <div>
+              <label>Email:</label>
+              <input
+                value={formValues.email}
+                name="email"
+                type="email"
+                placeholder="email"
+                onChange={handleChange}
+              />
+            </div>
+            <p style={{ color: "red" }}>{formErrors.email}</p>
+            <div>
+              <label>Password:</label>
+              <input
+                value={formValues.password}
+                name="password"
+                type="password"
+                placeholder="password"
+                onChange={handleChange}
+              />
+            </div>
+            <p style={{ color: "red" }}>{formErrors.password}</p>
+            <button>Login</button>
+          </form>
+        )}
       </div>
     </div>
   );
