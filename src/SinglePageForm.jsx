@@ -11,10 +11,12 @@ const SinglePageForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    setFormErrors(validate(formValues));
 
-    if (Object.keys(validate(formValues)).length===0) {
+    const errors = validate(formValues);
+
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
       setIsSubmit(true);
     }
   };
@@ -52,9 +54,9 @@ const SinglePageForm = () => {
     <div className="container">
       {isSubmit ? (
         <p>
-          You ave logged in
-          {/* {JSON.stringify(formValues, 2, undefined)} */}
-          {formValues.username}
+          You have logged in successfully
+          <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+          {/* {formValues.username} */}
         </p>
       ) : (
         <form onSubmit={handleSubmit}>
