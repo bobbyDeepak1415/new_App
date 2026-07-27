@@ -76,7 +76,7 @@ const SinglePageForm = () => {
               placeholder="username"
               onChange={handleChange}
               id="form-username"
-              type='text'
+              type="text"
             />
           </div>
           <p style={errorMsgStyle}>{formErrors.username}</p>
