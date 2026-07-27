@@ -76,6 +76,7 @@ const SinglePageForm = () => {
               placeholder="username"
               onChange={handleChange}
               id="form-username"
+              type='text'
             />
           </div>
           <p style={errorMsgStyle}>{formErrors.username}</p>
@@ -83,6 +84,7 @@ const SinglePageForm = () => {
             <label htmlFor="form-email">Email:</label>
             <input
               value={formValues.email}
+              type="email"
               name="email"
               placeholder="email"
               onChange={handleChange}
@@ -95,6 +97,7 @@ const SinglePageForm = () => {
             <input
               value={formValues.password}
               name="password"
+              type="password"
               placeholder="password"
               onChange={handleChange}
               id="form-password"
