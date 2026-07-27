@@ -12,6 +12,10 @@ const SinglePageForm = () => {
     setFormValues({ ...formValues, [name]: value });
   };
 
+  const messageStyle = {
+    color: "red",
+  };
+
   const validate = (formValues) => {
     const errors = {};
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -57,7 +61,7 @@ const SinglePageForm = () => {
             id="form-username"
           />
         </div>
-        <p>{formErrors.username}</p>
+        <p style={messageStyle}>{formErrors.username}</p>
         <div>
           <label htmlFor="form-email">Email:</label>
           <input
@@ -68,7 +72,7 @@ const SinglePageForm = () => {
             id="form-email"
           />
         </div>
-        <p>{formErrors.email}</p>
+        <p style={messageStyle}>{formErrors.email}</p>
         <div>
           <label htmlFor="form-username">Password:</label>
           <input
@@ -79,7 +83,7 @@ const SinglePageForm = () => {
             id="form-password"
           />
         </div>
-        <p>{formErrors.password}</p>
+        <p style={messageStyle}>{formErrors.password}</p>
         <button>Login</button>
       </form>
     </div>
