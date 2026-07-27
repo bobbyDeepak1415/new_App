@@ -61,9 +61,9 @@ const SinglePageForm = () => {
     <div>
       {isSubmit ? (
         <>
-        <h2 style={successMsgStyle}>You Have successfully loggedIn</h2>
+          <h2 style={successMsgStyle}>You Have successfully loggedIn</h2>
 
-        <pre></pre>
+          <pre>{JSON.stringify(formValues, undefined, 3)}</pre>
         </>
       ) : (
         <form onSubmit={handleSubmit}>
