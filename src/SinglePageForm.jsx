@@ -6,14 +6,20 @@ const SinglePageForm = () => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
 
+  const [isSubmit, setIsSubmit] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const messageStyle = {
+  const errorMsgStyle = {
     color: "red",
+  };
+
+  const successMsgStyle = {
+    color: "green",
   };
 
   const validate = (formValues) => {
@@ -45,47 +51,55 @@ const SinglePageForm = () => {
     const errors = validate(formValues);
 
     setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      setIsSubmit((prev) => !prev);
+    }
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <h1>User Form:</h1>
-        <div>
-          <label htmlFor="form-username">Username:</label>
-          <input
-            value={formValues.username}
-            name="username"
-            placeholder="username"
-            onChange={handleChange}
-            id="form-username"
-          />
-        </div>
-        <p style={messageStyle}>{formErrors.username}</p>
-        <div>
-          <label htmlFor="form-email">Email:</label>
-          <input
-            value={formValues.email}
-            name="email"
-            placeholder="email"
-            onChange={handleChange}
-            id="form-email"
-          />
-        </div>
-        <p style={messageStyle}>{formErrors.email}</p>
-        <div>
-          <label htmlFor="form-username">Password:</label>
-          <input
-            value={formValues.password}
-            name="password"
-            placeholder="password"
-            onChange={handleChange}
-            id="form-password"
-          />
-        </div>
-        <p style={messageStyle}>{formErrors.password}</p>
-        <button>Login</button>
-      </form>
+      {isSubmit ? (
+        <h2 style={successMsgStyle}>You Have successfully loggedIn</h2>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <h1>User Form:</h1>
+          <div>
+            <label htmlFor="form-username">Username:</label>
+            <input
+              value={formValues.username}
+              name="username"
+              placeholder="username"
+              onChange={handleChange}
+              id="form-username"
+            />
+          </div>
+          <p style={errorMsgStyle}>{formErrors.username}</p>
+          <div>
+            <label htmlFor="form-email">Email:</label>
+            <input
+              value={formValues.email}
+              name="email"
+              placeholder="email"
+              onChange={handleChange}
+              id="form-email"
+            />
+          </div>
+          <p style={errorMsgStyle}>{formErrors.email}</p>
+          <div>
+            <label htmlFor="form-username">Password:</label>
+            <input
+              value={formValues.password}
+              name="password"
+              placeholder="password"
+              onChange={handleChange}
+              id="form-password"
+            />
+          </div>
+          <p style={errorMsgStyle}>{formErrors.password}</p>
+          <button>Login</button>
+        </form>
+      )}
     </div>
   );
 };
