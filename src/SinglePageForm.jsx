@@ -53,14 +53,18 @@ const SinglePageForm = () => {
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
-      setIsSubmit((prev) => !prev);
+      setIsSubmit(true);
     }
   };
 
   return (
     <div>
       {isSubmit ? (
+        <>
         <h2 style={successMsgStyle}>You Have successfully loggedIn</h2>
+
+        <pre></pre>
+        </>
       ) : (
         <form onSubmit={handleSubmit}>
           <h1>User Form:</h1>
