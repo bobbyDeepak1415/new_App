@@ -11,21 +11,37 @@ const SinglePageForm = () => {
 
     setFormValues({ ...formValues, [name]: value });
   };
-  
-  const validate=(formValues)=>{
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-     const passwordRegex = /^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/;
-  }
 
+  const validate = (formValues) => {
+    const errors = {};
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordRegex = /^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/;
+
+    if (!formValues.username) {
+      errors.username = "username required";
+    }
+
+    if (!formValues.email) {
+      errors.email = "email required";
+    } else if (!emailRegex.test(formValues.email)) {
+      errors.email = "Invalid email format";
+    }
+    if (!formValues.password) {
+      errors.password = "password required";
+    } else if (!passwordRegex.test(formValues.password)) {
+      errors.password = "Invalid password format";
+    }
+
+    return errors;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const errors=validate(formValues)
+    const errors = validate(formValues);
 
-setFormErrors(errors)
+    setFormErrors(errors);
   };
-
 
   return (
     <div>
@@ -41,6 +57,7 @@ setFormErrors(errors)
             id="form-username"
           />
         </div>
+        <p>{formErrors.username}</p>
         <div>
           <label htmlFor="form-email">Email:</label>
           <input
@@ -51,6 +68,7 @@ setFormErrors(errors)
             id="form-email"
           />
         </div>
+        <p>{formErrors.email}</p>
         <div>
           <label htmlFor="form-username">Password:</label>
           <input
@@ -61,6 +79,7 @@ setFormErrors(errors)
             id="form-password"
           />
         </div>
+        <p>{formErrors.password}</p>
         <button>Login</button>
       </form>
     </div>
