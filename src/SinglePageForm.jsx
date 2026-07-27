@@ -63,7 +63,7 @@ const SinglePageForm = () => {
         <>
           <h2 style={successMsgStyle}>You Have successfully loggedIn</h2>
 
-          <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+          <pre>{JSON.stringify(formValues)}</pre>
         </>
       ) : (
         <form onSubmit={handleSubmit}>
