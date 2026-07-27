@@ -4,16 +4,27 @@ const SinglePageForm = () => {
   const initialValues = { username: "", email: "", password: "" };
 
   const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setFormValues({ ...formValues, [name]: value });
   };
+  
+  const validate=()=>{
+
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const errors=validate(formValues)
+
+set
   };
+
 
   return (
     <div>
