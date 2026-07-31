@@ -6,7 +6,7 @@ const SinglePageForm = () => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
 
-  const [isSubmit,setIsSubmit]=useState(false)
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const errorMsg = {
     color: "red",
@@ -24,7 +24,9 @@ const SinglePageForm = () => {
     const errors = validate(formValues);
     setFormErrors(errors);
 
-
+    if (Object.keys(errors).length === 0) {
+      setIsSubmit((prev) => !prev);
+    }
   };
 
   const validate = (formValues) => {
@@ -57,54 +59,60 @@ const SinglePageForm = () => {
       className="form-container"
       style={{ height: "100vh", width: "100vw", backgroundColor: "gray" }}
     >
-      <form onSubmit={handleSubmit}>
-        <div className="form-field">
-          <label>Username:</label>
-          <input
-            style={{
-              background: "transparent",
-              border: "2px solid black",
-              margin: "20px",
-            }}
-            onChange={handleChange}
-            name="username"
-            value={formValues.username}
-            type="text"
-          />
-          <p style={errorMsg}>{formErrors.username}</p>
-        </div>
-        <div className="form-field">
-          <label>Email:</label>
-          <input
-            style={{
-              background: "transparent",
-              border: "2px solid black",
-              margin: "20px",
-            }}
-            onChange={handleChange}
-            name="email"
-            value={formValues.email}
-            type="email"
-          />
-          <p style={errorMsg}>{formErrors.email}</p>
-        </div>
-        <div className="form-field">
-          <label>Password:</label>
-          <input
-            style={{
-              background: "transparent",
-              border: "2px solid black",
-              margin: "20px",
-            }}
-            onChange={handleChange}...
-            name="password"
-            value={formValues.password}
-            type="password"
-          />
-          <p style={errorMsg}>{formErrors.password}</p>
-        </div>
-        <button>Register</button>
-      </form>
+      {isSubmit ? (
+        <h2 style={{ color: "green", fontSize: "20px" }}>
+          Registration successfull
+        </h2>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className="form-field">
+            <label>Username:</label>
+            <input
+              style={{
+                background: "transparent",
+                border: "2px solid black",
+                margin: "20px",
+              }}
+              onChange={handleChange}
+              name="username"
+              value={formValues.username}
+              type="text"
+            />
+            <p style={errorMsg}>{formErrors.username}</p>
+          </div>
+          <div className="form-field">
+            <label>Email:</label>
+            <input
+              style={{
+                background: "transparent",
+                border: "2px solid black",
+                margin: "20px",
+              }}
+              onChange={handleChange}
+              name="email"
+              value={formValues.email}
+              type="email"
+            />
+            <p style={errorMsg}>{formErrors.email}</p>
+          </div>
+          <div className="form-field">
+            <label>Password:</label>
+            <input
+              style={{
+                background: "transparent",
+                border: "2px solid black",
+                margin: "20px",
+              }}
+              onChange={handleChange}
+              name="password"
+              value={formValues.password}
+              type="password"
+            />
+            <p style={errorMsg}>{formErrors.password}</p>
+          </div>
+          <button>Register</button>
+        </form>
+      )}
     </div>
   );
 };
