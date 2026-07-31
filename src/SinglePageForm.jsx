@@ -5,7 +5,11 @@ const SinglePageForm = () => {
 
   const [formValues, setFormValues] = useState(initialValues);
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormValues({ ...formValues, [name]: value });
+  };
 
   return (
     <div
@@ -22,26 +26,37 @@ const SinglePageForm = () => {
               margin: "20px",
             }}
             onChange={handleChange}
+            name="username"
+            value={formValues.username}
+            type="text"
           />
         </div>
         <div className="form-field">
-          <label>Username:</label>
+          <label>Email:</label>
           <input
             style={{
               background: "transparent",
               border: "2px solid black",
               margin: "20px",
             }}
+            onChange={handleChange}
+            name="email"
+            value={formValues.email}
+            type="email"
           />
         </div>
         <div className="form-field">
-          <label>Username:</label>
+          <label>Password:</label>
           <input
             style={{
               background: "transparent",
               border: "2px solid black",
               margin: "20px",
             }}
+            onChange={handleChange}
+            name="password"
+            value={formValues.password}
+            type="password"
           />
         </div>
       </form>
