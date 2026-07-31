@@ -4,7 +4,13 @@ const SinglePageForm = () => {
   const initialValues = { username: "", email: "", password: "" };
 
   const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState();
+  const [formErrors, setFormErrors] = useState({});
+
+  const [isSubmit,setIsSubmit]=useState(false)
+
+  const errorMsg = {
+    color: "red",
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,13 +23,15 @@ const SinglePageForm = () => {
 
     const errors = validate(formValues);
     setFormErrors(errors);
+
+
   };
 
   const validate = (formValues) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const passwordRegex =
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     const errors = {};
 
@@ -63,7 +71,7 @@ const SinglePageForm = () => {
             value={formValues.username}
             type="text"
           />
-          <p>{formErrors.username}</p>
+          <p style={errorMsg}>{formErrors.username}</p>
         </div>
         <div className="form-field">
           <label>Email:</label>
@@ -78,7 +86,7 @@ const SinglePageForm = () => {
             value={formValues.email}
             type="email"
           />
-          <p>{formErrors.email}</p>
+          <p style={errorMsg}>{formErrors.email}</p>
         </div>
         <div className="form-field">
           <label>Password:</label>
@@ -88,12 +96,12 @@ const SinglePageForm = () => {
               border: "2px solid black",
               margin: "20px",
             }}
-            onChange={handleChange}
+            onChange={handleChange}...
             name="password"
             value={formValues.password}
             type="password"
           />
-          <p>{formErrors.password}</p>
+          <p style={errorMsg}>{formErrors.password}</p>
         </div>
         <button>Register</button>
       </form>
