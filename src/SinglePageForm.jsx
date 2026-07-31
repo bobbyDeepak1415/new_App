@@ -4,6 +4,7 @@ const SinglePageForm = () => {
   const initialValues = { username: "", email: "", password: "" };
 
   const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -11,12 +12,44 @@ const SinglePageForm = () => {
     setFormValues({ ...formValues, [name]: value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const errors = validate(formValues);
+    setFormErrors(errors);
+  };
+
+  const validate = (formValues) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    const passwordRegex =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+    const errors = {};
+
+    if (!formValues.username) {
+      errors.username = "username required";
+    }
+    if (!formValues.email) {
+      errors.email = "email required";
+    } else if (!emailRegex.test(formValues.email)) {
+      errors.email = "Invalid email format";
+    }
+    if (!formValues.password) {
+      errors.password = "password required";
+    } else if (!passwordRegex.test(formValues.password)) {
+      errors.password = "Invalid password format";
+    }
+
+    return errors;
+  };
+
   return (
     <div
       className="form-container"
       style={{ height: "100vh", width: "100vw", backgroundColor: "gray" }}
     >
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-field">
           <label>Username:</label>
           <input
@@ -30,6 +63,7 @@ const SinglePageForm = () => {
             value={formValues.username}
             type="text"
           />
+          <p></p>
         </div>
         <div className="form-field">
           <label>Email:</label>
@@ -59,6 +93,7 @@ const SinglePageForm = () => {
             type="password"
           />
         </div>
+        <button>Register</button>
       </form>
     </div>
   );
