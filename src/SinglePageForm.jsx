@@ -63,7 +63,7 @@ const SinglePageForm = () => {
             value={formValues.username}
             type="text"
           />
-          <p></p>
+          <p>{formErrors.username}</p>
         </div>
         <div className="form-field">
           <label>Email:</label>
@@ -78,6 +78,7 @@ const SinglePageForm = () => {
             value={formValues.email}
             type="email"
           />
+          <p>{formErrors.email}</p>
         </div>
         <div className="form-field">
           <label>Password:</label>
@@ -92,6 +93,7 @@ const SinglePageForm = () => {
             value={formValues.password}
             type="password"
           />
+          <p>{formErrors.password}</p>
         </div>
         <button>Register</button>
       </form>
