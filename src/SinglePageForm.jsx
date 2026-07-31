@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SinglePageForm = () => {
+  const initialValues = { username: "", email: "", password: "" };
 
-  const handleCange=()=>{
-    
-  }
+  const [formValues, setFormValues] = useState(initialValues);
+
+  const handleChange = () => {};
 
   return (
     <div
@@ -19,8 +20,8 @@ const SinglePageForm = () => {
               background: "transparent",
               border: "2px solid black",
               margin: "20px",
-              onChange={handleChnage}
             }}
+            onChange={handleChange}
           />
         </div>
         <div className="form-field">
