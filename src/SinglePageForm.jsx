@@ -110,6 +110,5 @@ const SinglePageForm = () => {
     </div>
   );
 };
-.......
 
 export default SinglePageForm;
