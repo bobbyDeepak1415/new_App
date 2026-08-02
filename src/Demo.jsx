@@ -10,6 +10,10 @@ const Demo = () => {
   const [formValues,setFromValues]=useState(initialValues)
 
 
+  const handleChange=(e)=>{
+setFromValues.username(e.target.value)
+  }
+
 
   return (
     <div style={{height:"100vh",width:"100vw",backgroundColor:"gray"}}>
@@ -17,7 +21,7 @@ const Demo = () => {
       <div className='form container'>
         <div className='input field'>
 <label>Username:</label>
-<input name="username" value={formValues.username}/>
+<input onChange={handleChange} name="username" value={formValues.username}/>
         </div>
         <div className='input field'>
 <label>email:</label>
