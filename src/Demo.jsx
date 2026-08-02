@@ -18,6 +18,10 @@ const Demo = () => {
 
 
 
+
+
+
+
 const handleClick=()=>{
 
   const isStep1Valid=formValues.username&&formValues.email
@@ -25,7 +29,15 @@ const handleClick=()=>{
 
   if(isStep1Valid){
     SetPage(2)
+  }else{
+    setError("credentials required")
   }
+
+  if(isStep2Valid){
+    return "you have logged in"
+  }
+
+
 
 }
 
