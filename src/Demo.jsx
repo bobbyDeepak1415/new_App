@@ -67,7 +67,7 @@ const Demo = () => {
           <input
             checked={formValues.terms}
             placeholder="hello"
-            onChange={handleChange}
+            onChange={() => setFromValues}
             type="checkbox"
           />
         </div>
@@ -77,23 +77,5 @@ const Demo = () => {
     </div>
   );
 };
-
-// return (
-//   <div style={{ height: "100vh", width: "100vw", backgroundColor: "gray" }}>
-//     { (
-
-//     )
-
-//   }
-
-//   {page===2 &&(
-
-//  <>
-//
-//       </>
-
-//   )
-
-// }
 
 export default Demo;
