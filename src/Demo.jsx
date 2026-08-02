@@ -20,49 +20,55 @@ const Demo = () => {
 
 const handleClick=()=>{
 
-  if(!formValues.username &&!formValues.email){
-setError("credentials required")
-  }
+  const isStep1Valid=formValues.username&&formValues.email
+  const isStep2Valid=formValues.role&&formValues.terms
 
-  
-  
+  if(isStep1Valid){
+    SetPage(2)
+  }
 
 }
 
-  return (
-    <div style={{ height: "100vh", width: "100vw", backgroundColor: "gray" }}>
+return (
+  <div style={{ height: "100vh", width: "100vw", backgroundColor: "gray" }}>
 
 {page===1? (
- <div className="form container">
-        <div className="input field">
-          <label>Username:</label>
-          <input
-            type="text"
-            onChange={handleChange}
-            name="username"
-            value={formValues.username}
-          />
-        </div>
-        <div className="input field">
-          <label>email:</label>
-          <input
-            onChange={handleChange}
-            name="email"
-            value={formValues.email}
-          />
-        </div>
-
-
-        {error}
+<div className="form container">
+      <div className="input field">
+        <label>Username:</label>
+        <input
+          type="text"
+          onChange={handleChange}
+          name="username"
+          value={formValues.username}
+        />
       </div>
+      <div className="input field">
+        <label>email:</label>
+        <input
+          onChange={handleChange}
+          name="email"
+          value={formValues.email}
+        />
+      </div>
+
+
+      {error}
+    </div>
 ):(
-  <p>Page2</p>
+<p>Page2</p>
 )}
 <button onClick={handleClick}>Next</button>
 
-     
-    </div>
-  );
+   
+  </div>
+);
 };
+
+  
+  
+
+
+
 
 export default Demo;
