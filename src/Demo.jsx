@@ -8,33 +8,34 @@ const Demo = () => {
   const [formValues, setFromValues] = useState(initialValues);
   const [message, setMsg] = useState("");
 
- 
-
   const handleChange = (e) => {
-    const { name, value,type,checked } = e.target;
+    const { name, value, type, checked } = e.target;
 
-    setFromValues({ ...formValues, [name]: type==="checkbox"? checked:value});
+    setFromValues({
+      ...formValues,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
-  
-
-
-
   const handleClick = () => {
-
-    setMsg("")
-
-     const isStep2Valid = formValues.role && formValues.terms;
+    setMsg("");
     const isStep1Valid = formValues.username && formValues.email;
+    const isStep2Valid = formValues.role && formValues.terms;
 
-
-    
-if(page===1){
-
-  if()
-}
-
-
+    if (page === 1) {
+      if (isStep1Valid) {
+        SetPage(2);
+      } else {
+        setMsg("Credentials required for Step 1");
+      }
+    } else if (page === 2) {
+      if (isStep2Valid) {
+        setMsg("You have logged in successfully!");
+      } else {
+        setMsg("Please select a role and accept terms");
+      }
+    }
+  };
 
   return (
     <div style={{ height: "100vh", width: "100vw", backgroundColor: "gray" }}>
@@ -52,7 +53,7 @@ if(page===1){
           <div className="input field">
             <label>email:</label>
             <input
-            type="text"
+              type="text"
               onChange={handleChange}
               name="email"
               value={formValues.email}
@@ -71,10 +72,12 @@ if(page===1){
           </select>
           <span>Accept Terms & Conditions</span>
           <input
-          name="terms"
+            name="terms"
             checked={formValues.terms}
             placeholder="hello"
-            onChange={()=>setFromValues({ ...formValues, terms:e.target.checked })}
+            onChange={() =>
+              setFromValues({ ...formValues, terms: e.target.checked })
+            }
             type="checkbox"
           />
         </div>
