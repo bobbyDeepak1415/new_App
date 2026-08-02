@@ -44,7 +44,7 @@ setError("credentials required")
           />
         </div>
         <div className="input field">
-          <label>emaikkkl:</label>
+          <label>email:</label>
           <input
             onChange={handleChange}
             name="email"
