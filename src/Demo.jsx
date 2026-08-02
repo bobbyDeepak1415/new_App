@@ -24,7 +24,7 @@ const handleClick=()=>{
 setError("credentials required")
   }
 
-  SetPage(2)
+  
   
 
 }
@@ -52,13 +52,13 @@ setError("credentials required")
           />
         </div>
 
-        <button onClick={handleClick}>Next</button>
 
         {error}
       </div>
 ):(
   <p>Page2</p>
 )}
+<button onClick={handleClick}>Next</button>
 
      
     </div>
