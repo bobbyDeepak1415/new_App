@@ -6,28 +6,35 @@ const Demo = () => {
   const initialValues = { username: "", email: "", role: "", terms: false };
 
   const [formValues, setFromValues] = useState(initialValues);
-  const [error, setError] = useState("");
+  const [message, setMsg] = useState("");
+
+ 
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value,type,checked } = e.target;
 
-    setFromValues({ ...formValues, [name]: value });
+    setFromValues({ ...formValues, [name]: type==="checkbox"? checked:value});
   };
+
+  
+
+
 
   const handleClick = () => {
+
+    setMsg("")
+
+     const isStep2Valid = formValues.role && formValues.terms;
     const isStep1Valid = formValues.username && formValues.email;
-    const isStep2Valid = formValues.role && formValues.terms;
 
-    if (isStep1Valid) {
-      SetPage(2);
-    } else {
-      setError("credentials required");
-    }
 
-    if (isStep2Valid) {
-      return "you have logged in";
-    }
-  };
+    
+if(page===1){
+
+  if()
+}
+
+
 
   return (
     <div style={{ height: "100vh", width: "100vw", backgroundColor: "gray" }}>
@@ -45,35 +52,37 @@ const Demo = () => {
           <div className="input field">
             <label>email:</label>
             <input
+            type="text"
               onChange={handleChange}
               name="email"
               value={formValues.email}
             />
           </div>
-
-          {error}
         </div>
       )}
 
       {page === 2 && (
         <div>
-          <select onChange={handleChange}>
+          <select name="role" value={formValues.role} onChange={handleChange}>
             <option value="">Select role</option>
-            <option value={formValues.role}>Developer</option>
-            <option value={formValues.role}>Designer</option>
-            <option value={formValues.role}>Manager</option>
+            <option>Developer</option>
+            <option>Designer</option>
+            <option>Manager</option>
           </select>
           <span>Accept Terms & Conditions</span>
           <input
+          name="terms"
             checked={formValues.terms}
             placeholder="hello"
-            onChange={() => setFromValues}
+            onChange={()=>setFromValues({ ...formValues, terms:e.target.checked })}
             type="checkbox"
           />
         </div>
       )}
 
       <button onClick={handleClick}>Next</button>
+
+      <p>{message}</p>
     </div>
   );
 };
