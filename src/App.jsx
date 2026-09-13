@@ -1,12 +1,12 @@
 // import './App.css'
-// import SinglePageForm from "./SinglePageForm";
-import TwoPageForm from "./TwoPageForm";
+import SinglePageForm from "./SinglePageForm";
+// import TwoPageForm from "./TwoPageForm";
 
 export default function App() {
   return (
     <>
-      {/* <SinglePageForm /> */}
-      <TwoPageForm/>
+      <SinglePageForm />
+      {/* /<TwoPageForm/> */}
     </>
   );
 }
