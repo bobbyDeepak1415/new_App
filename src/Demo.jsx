@@ -35,6 +35,33 @@ const Demo = () => {
   const handleSubmit=(e)=>{
 e.preventDefault()
 
+const errors=validate(formValues)
+
+
+  }
+
+  const validate=(formValues)=>{
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+      const errors={}
+
+      if(!formValues.name){
+errors.name="Name required"
+      }
+
+      if(!formValues.email){
+errors.email="Email required"
+}else if(!emailRegex.test(formValues.email)){
+  errors.email="Incorrect Email Format"
+  
+      }
+
+      return errors
+
 
   }
 
