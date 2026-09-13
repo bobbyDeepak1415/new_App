@@ -37,7 +37,7 @@ e.preventDefault()
 
 const errors=validate(formValues)
 setFormErrors(errors)
-setFormValues({})
+// setFormValues({})
 
 if(Object.keys(errors).length===0){
   setIsSubmit(prev=>!prev)
