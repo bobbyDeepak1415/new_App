@@ -54,9 +54,19 @@ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       
       if(!formValues.email){
         errors.email="Email required...!"
+      }else if(!emailRegex.test(formValues.email)){
+        errors.email="Invalid Email Format...!"
+
+      }
+      if(!formValues.password){
+        errors.password="Password required...!"
+      }else if(!passwordRegex.test(formValues.password)){
+        errors.email="Invalid Password Format...!"
+
       }
 
 
+      return errors
 
 
   }
