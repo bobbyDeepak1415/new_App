@@ -15,6 +15,11 @@ const successMsg={
   fontSize:"20px",
   fontWeight:"bold"
 }
+const errorMsg={
+  color:"red",
+  fontSize:"20px",
+  fontWeight:"bold"
+}
 
   const formField={
     margin:"10px"
@@ -34,6 +39,9 @@ setFormValues({...formValues,[name]:value})
     const errors=validate(formValues)
 
     setFormErrors(errors)
+    if(Object.keys(errors).length===0){
+      setIsSubmit(prev=>!prev)
+    }
 
 
   }
@@ -61,7 +69,7 @@ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if(!formValues.password){
         errors.password="Password required...!"
       }else if(!passwordRegex.test(formValues.password)){
-        errors.email="Invalid Password Format...!"
+        errors.password="Invalid Password Format...!"
 
       }
 
@@ -79,18 +87,18 @@ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 <form onSubmit={handleSubmit}>
         <div style={formField}>
           <label>Username:</label>
-          <input value={formValues.userName} type='text' onChange={handleChange}/>
-          <p>{formErrors.userName}</p>
+          <input name='userName' value={formValues.userName} type='text' onChange={handleChange}/>
+          <p style={errorMsg}>{formErrors.userName}</p>
         </div>
         <div style={formField}>
           <label>Email:</label>
-          <input value={formValues.email} type='email' onChange={handleChange}/>
-          <p>{formErrors.email}</p>
+          <input name='email' value={formValues.email} type='email' onChange={handleChange}/>
+          <p style={errorMsg}>{formErrors.email}</p>
         </div>
         <div style={formField}>
           <label>Password:</label>
-          <input value={formValues.password} type='password' onChange={handleChange}/>
-          <p>{formErrors.password}</p>
+          <input name='password' value={formValues.password} type='password' onChange={handleChange}/>
+          <p style={errorMsg}>{formErrors.password}</p>
         </div>
 
 <button>Submit</button>
