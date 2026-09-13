@@ -36,6 +36,8 @@ const Demo = () => {
 e.preventDefault()
 
 const errors=validate(formValues)
+setFormErrors(errors)
+setFormValues({})
 
 
   }
@@ -57,6 +59,12 @@ errors.name="Name required"
 errors.email="Email required"
 }else if(!emailRegex.test(formValues.email)){
   errors.email="Incorrect Email Format"
+  
+      }
+      if(!formValues.password){
+errors.password="Password required"
+}else if(!passwordRegex.test(formValues.password)){
+  errors.password="Incorrect Password Format"
   
       }
 
