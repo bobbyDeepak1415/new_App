@@ -39,6 +39,10 @@ const errors=validate(formValues)
 setFormErrors(errors)
 setFormValues({})
 
+if(Object.keys(errors).length===0){
+  setIsSubmit(prev=>!prev)
+}
+
 
   }
 
@@ -94,6 +98,7 @@ errors.password="Password required"
       <input value={formValues.password} type="password" onChange={handleChange}/>
       <p style={errorMsg}>{formErrors.password}</p>
       </div>
+      <button>Submit</button>
     </form>
     )}
     
