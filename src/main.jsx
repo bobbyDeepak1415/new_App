@@ -12,6 +12,3 @@
 //   </StrictMode>,
 // );
 
-
-let str="AABBCAAB"
-
