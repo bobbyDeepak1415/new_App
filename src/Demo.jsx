@@ -15,6 +15,12 @@ const Demo = () => {
   const isStep1Valid=formData.name && formData.email
   const isStep2Valid=formData.role && formData.terms
 
+  const handleClick=()=>{
+    if(isStep1Valid) {
+      setStep(2)
+    }
+  }
+
   return (
     <div>
       {step===1 && (
@@ -26,13 +32,28 @@ const Demo = () => {
           </div>
           <div>
             <label>Email:</label>
-          <input value={formData.email} type='email' onChange={(e)=>setFormData({...formData,email:e.target.value})}/>
+          <input value={formData.email} type='email' onChange={(e)=>setFormData(prev=>({...prev,email:e.target.value}))}/>
           </div>
-            
+            <button onClick={handleClick}>Next</button>
         </div>
       )}
 
+{step===2 && (
+  <div>
+    <div>
+            <label>Role:</label>
 
+<select onChange={(e)=>setFormData(prev=>({...prev,role:e.target.value}))} value={formData.role}>
+
+
+</select>
+          </div>
+          <div>
+            <label>Email:</label>
+          <input value={formData.email} type='email' onChange={(e)=>setFormData(prev=>({...prev,email:e.target.value}))}/>
+          </div>
+  </div>
+)}
       
     </div>
   )
