@@ -15,11 +15,34 @@ const Demo = () => {
   const isStep1Valid=formData.name && formData.email
   const isStep2Valid=formData.role && formData.terms
 
-  const handleClick=()=>{
-    if(isStep1Valid) {
-      setStep(2)
-    }
+
+  if(isSubmitted){
+    return (
+      <div>
+        <div>
+
+         <label>Name:</label>
+<span>{formData.name}</span>
+        </div>
+        <div>
+
+         <label>emial:</label>
+<span>{formData.email}</span>
+        </div>
+        <div>
+
+         <label>Role:</label>
+<span>{formData.role}</span>
+        </div>
+        <div>
+
+         <label>Terms:</label>
+<span>{formData.terms ? "yes" : "no"}</span>
+        </div>
+      </div>
+    )
   }
+
 
   return (
     <div>
@@ -34,7 +57,7 @@ const Demo = () => {
             <label>Email:</label>
           <input value={formData.email} type='email' onChange={(e)=>setFormData(prev=>({...prev,email:e.target.value}))}/>
           </div>
-            <button onClick={handleClick}>Next</button>
+            <button disabled={!isStep1Valid} onClick={()=>setStep(2)}>Next</button>
         </div>
       )}
 
@@ -45,13 +68,16 @@ const Demo = () => {
 
 <select onChange={(e)=>setFormData(prev=>({...prev,role:e.target.value}))} value={formData.role}>
 
-
+<option>Developer</option>
+<option>Tester</option>
+<option>Recruiter</option>
 </select>
           </div>
           <div>
-            <label>Email:</label>
-          <input value={formData.email} type='email' onChange={(e)=>setFormData(prev=>({...prev,email:e.target.value}))}/>
+            <label>Terms:</label>
+          <input   checked={formData.terms} type='checkbox' onChange={(e)=>setFormData(prev=>({...prev,terms:e.target.value}))}/>
           </div>
+          <button onClick={()=>setIsSubmitted(true)} disabled={!isStep2Valid}>Register</button>
   </div>
 )}
       
