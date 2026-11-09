@@ -2,85 +2,59 @@ import React, { useState } from 'react'
 
 const Demo = () => {
 
-  const userDetails={name:"",email:"",role:"",terms:false}
-
-  const [step,setStep]=useState(1)
+  const userDetails={Name:"",email:"",role:"",terms:false}
 
   const [formData,setFormData]=useState(userDetails)
 
-  const [isSubmitted,setIsSubmitted]=useState(false)
-
-  // console.log(formData.email)
-
-  const isStep1Valid=formData.name && formData.email
-  const isStep2Valid=formData.role && formData.terms
+  const []
+  const [step,setStep]=useState(1)
 
 
-  if(isSubmitted){
-    return (
-      <div>
-        <div>
-
-         <label>Name:</label>
-<span>{formData.name}</span>
-        </div>
-        <div>
-
-         <label>emial:</label>
-<span>{formData.email}</span>
-        </div>
-        <div>
-
-         <label>Role:</label>
-<span>{formData.role}</span>
-        </div>
-        <div>
-
-         <label>Terms:</label>
-<span>{formData.terms ? "yes" : "no"}</span>
-        </div>
-      </div>
-    )
-  }
-
+const isStep1Valid=formData.Name && formData.email 
+const isStep2Valid=formData.role && formData.terms
 
   return (
     <div>
-      {step===1 && (
-        <div>
-          <div>
-            <label>Name:</label>
 
-          <input value={formData.name} type='text' onChange={(e)=>setFormData({...formData,name:e.target.value})}/>
-          </div>
-          <div>
-            <label>Email:</label>
-          <input value={formData.email} type='email' onChange={(e)=>setFormData(prev=>({...prev,email:e.target.value}))}/>
-          </div>
-            <button disabled={!isStep1Valid} onClick={()=>setStep(2)}>Next</button>
-        </div>
-      )}
+{step===1 && (
+  <div>
+
+      <div>
+        <label>Name:</label>
+        <input  value={formData.Name} onChange={(e)=>setFormData(prev=>({...prev,Name:e.target.value}))}/>
+      </div>
+      <br></br>
+      <div>
+        <label>Email:</label>
+        <input  value={formData.email} name="email" onChange={(e)=>setFormData(prev=>({...prev,[e.target.name]:e.target.value}))}/>
+      </div>
+      <button disabled={!isStep1Valid} onClick={()=>setStep(2)}>Next</button>
+  </div>
+
+)}
 
 {step===2 && (
-  <div>
-    <div>
-            <label>Role:</label>
 
-<select onChange={(e)=>setFormData(prev=>({...prev,role:e.target.value}))} value={formData.role}>
+<div>
 
-<option>Developer</option>
-<option>Tester</option>
-<option>Recruiter</option>
-</select>
-          </div>
-          <div>
-            <label>Terms:</label>
-          <input   checked={formData.terms} type='checkbox' onChange={(e)=>setFormData(prev=>({...prev,terms:e.target.value}))}/>
-          </div>
-          <button onClick={()=>setIsSubmitted(true)} disabled={!isStep2Valid}>Register</button>
-  </div>
+      <br></br>
+      <div>
+        <label>Role:</label>
+        <select name="role" value={formData.role} onChange={(e)=>setFormData(prev=>({...prev,[e.target.name]:e.target.value}))}>
+          <option>Developer</option>
+          <option>Tester</option>
+          <option>Recruiter</option>
+        </select>
+      </div>
+      <br></br>
+      <div>
+        <label>Terms:</label>
+        <input name="terms" type='checkbox' checked={formData.terms} onChange={(e)=>setFormData(prev=>({...prev,[e.target.name]:e.target.value}))}/>
+      </div>
+      <button disabled={!isStep2Valid} onClick={}>Login</button>
+      <br></br>
+</div>
 )}
-      
     </div>
   )
 }
