@@ -13,8 +13,30 @@ const Demo = () => {
 
   }
 
-  const handleSubmit=()=>{
-    
+  const handleSubmit=(e)=>{
+e.preventDefault()
+
+const errors=validate(formData)
+
+  }
+
+  const validate=(formData)=>{
+
+    const errors={}
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if(!formData.userName){
+      errors.userName="username required"
+    }
+    if(!formData.email){
+      errors.email="email  required"
+    }else if(!emailRegex.test(formData.email)){
+      errors.email="email format incorrect"
+
+    }
+
+
   }
 
   return (
