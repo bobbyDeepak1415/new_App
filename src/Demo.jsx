@@ -76,6 +76,7 @@ if(isSubmitted){
       <div>
         <label>Email:</label>
         <input  value={formData.email} name="email" onChange={handleChange}/>
+        <p style={{color:"red"}}>{formErrors.email}</p>
       </div>
 
     <div>
@@ -85,13 +86,15 @@ if(isSubmitted){
           <option>Tester</option>
           <option>Recruiter</option>
         </select>
+        <p style={{color:"red"}}>{formErrors.role}</p>
       </div>
       
       <div>
         <label>Terms:</label>
         <input name="terms" type='checkbox' checked={formData.terms} onChange={handleChange}/>
+        <p style={{color:"red"}}>{formErrors.terms}</p>
       </div>
-      <button >Login</button>
+      <button onClick={()=>setIsSubmitted(true)}>Login</button>
 
     </form>
   )
