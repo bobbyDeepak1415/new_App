@@ -2,103 +2,70 @@ import React, { useState } from 'react'
 
 const Demo = () => {
 
-  const userDetails={Name:"",email:"",role:"",terms:false}
+  const userDetails={userName:"",email:"",role:"",terms:false}
 
   const [formData,setFormData]=useState(userDetails)
   const [formErrors,setFormErrors]=useState({})
 
-  const [isSubmitted,setIsSubmitted]=useState(false)
+  const [isSubmit,setIsSubmit]=useState(false)
 
-
-
-const handleChange=(e)=>{
-
-  
-
+  const handleChange=(e)=>{
 
   setFormData(prev=>({...prev,[e.target.name]:e.target.value}))
+
+  }
+
+  const handleSubmit=(e)=>{
+
+e.preventDefault()
+
+const errors=validate(formData)
+
+setFormErrors(errors)
+
+if(Array.keys(errors).length===0){
+setIsSubmit(true)
 }
 
-const handleSubmit=()=>{
-  const errors=validate(formData)
 
-  setFormErrors(errors)
+
+  }
+
+  const validate=(formData)=>{
+if(!formData.userName){
+  errors.userName="User name required"
 }
-
-const validate=(formData)=>{
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-if(!formData.Name){
-  errors.Name="username required"
-}
-if(!formData.email){
-  errors.email="email required"
-}else if(!emailRegex.test(formData.email)){
-  errors.email="email format incorrect"
-
-}
-if(!formData.role){
-  errors.role="role required"
-
-}
-if(!formData.terms){
-  errors.terms="terms required"
-}
-
-if(isSubmitted){
-  return <div>
-    <p>Name: {formData.Name}</p>
-    <br></br>
-    <br></br>
-    <p>Email: {formData.email}</p>
-    <br></br>
-    <br></br>
-    <p>Role: {formData.role}</p>
-    <br></br>
-    <br></br>
-    <p>terms: {formData.terms ? 'Yes' :"No"}</p>
-    <br></br>
-    <br></br>
-    <p>Successfully LoggedIn</p>
-  </div>
-}
-
+  }
 
   return (
     <form onSubmit={handleSubmit}>
-
-
       <div>
         <label>Name:</label>
-        <input  value={formData.Name} name="Name" onChange={handleChange}/>
-        <p style={{color:"red"}}>{formErrors.Name}</p>
+        <input name='userName' value={formData.userName} onChange={(e)=>handleChange(e)}/>
+        <p style={{color:"red"}}>{errors.userName}</p>
       </div>
       <div>
-        <label>Email:</label>
-        <input  value={formData.email} name="email" onChange={handleChange}/>
-        <p style={{color:"red"}}>{formErrors.email}</p>
+        <label>Eamil:</label>
+        <input name='email' value={formData.email} onChange={(e)=>handleChange(e)}/>
+        <p style={{color:"red"}}>{errors.email}</p>
       </div>
-
-    <div>
+      <div>
         <label>Role:</label>
-        <select name="role" value={formData.role} onChange={handleChange}>
+        <select name='role' value={formData.role} onChange={(e)=>handleChange(e)}>
           <option>Developer</option>
           <option>Tester</option>
           <option>Recruiter</option>
         </select>
-        <p style={{color:"red"}}>{formErrors.role}</p>
+        <p style={{color:"red"}}>{errors.role}</p>
       </div>
-      
       <div>
-        <label>Terms:</label>
-        <input name="terms" type='checkbox' checked={formData.terms} onChange={handleChange}/>
-        <p style={{color:"red"}}>{formErrors.terms}</p>
+        <label>Name:</label>
+        <input name='terms' type='checkbox' checked={formData.terms} onChange={(e)=>handleChange(e)}/>
+        <p style={{color:"red"}}>{errors.terms}</p>
       </div>
-      <button onClick={()=>setIsSubmitted(true)}>Login</button>
 
     </form>
   )
-}
 }
 
 export default Demo
