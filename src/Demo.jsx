@@ -17,6 +17,7 @@ const Demo = () => {
 e.preventDefault()
 
 const errors=validate(formData)
+setFormErrors(errors)
 
   }
 
@@ -35,7 +36,11 @@ const errors=validate(formData)
       errors.email="email format incorrect"
 
     }
+if(!formData.password){
+      errors.password="password  required"
+    }
 
+    return errors
 
   }
 
@@ -44,17 +49,17 @@ const errors=validate(formData)
       <div>
         <label>UserName:</label>
         <input name="userName" value={formData.userName} onChange={(e)=>handleChange(e)}/>
-        <p>{formErrors.userName}</p>
+        <p style={{color:"red"}}>{formErrors.userName}</p>
       </div>
       <div>
         <label>Email:</label>
         <input name="email" value={formData.email} onChange={(e)=>handleChange(e)}/>
-        <p>{formErrors.email}</p>
+        <p style={{color:"red"}}>{formErrors.email}</p>
       </div>
       <div>
         <label>Password:</label>
         <input name="password" value={formData.password} onChange={(e)=>handleChange(e)}/>
-        <p>{formErrors.password}</p>
+        <p style={{color:"red"}}>{formErrors.password}</p>
       </div>
       <button>Login</button>
     </form>
