@@ -32,12 +32,33 @@ setIsSubmit(true)
   }
 
   const validate=(formData)=>{
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+
 if(!formData.userName){
   errors.userName="User name required"
 }
+if(!formData.email){
+  errors.userName="Email required"
+}else if(!emailRegex.test(formData.email)){
+  errors.userName="Email format incorrect"
+
+}
+if(!formData.role){
+  errors.userName="role required"
+}
+if(!formData.terms){
+  errors.userName="terms required"
+}
+
   }
 
   return (
+
+    <div>
+      {!isSubmit ? (
+
     <form onSubmit={handleSubmit}>
       <div>
         <label>Name:</label>
@@ -65,6 +86,11 @@ if(!formData.userName){
       </div>
 
     </form>
+      ):(
+<h2>Successfully loggedIn</h2>
+      )}
+
+    </div>
   )
 }
 
