@@ -4,6 +4,8 @@ const Demo = () => {
 
   const userDetails={userName:"",email:"",role:"",terms:false}
 
+
+
   const [formData,setFormData]=useState(userDetails)
   const [formErrors,setFormErrors]=useState({})
 
@@ -23,7 +25,7 @@ const errors=validate(formData)
 
 setFormErrors(errors)
 
-if(Array.keys(errors).length===0){
+if(Object.keys(errors).length===0){
 setIsSubmit(true)
 }
 
@@ -33,6 +35,8 @@ setIsSubmit(true)
 
   const validate=(formData)=>{
 
+    const errors={}
+
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 
@@ -40,17 +44,19 @@ if(!formData.userName){
   errors.userName="User name required"
 }
 if(!formData.email){
-  errors.userName="Email required"
+  errors.email="Email required"
 }else if(!emailRegex.test(formData.email)){
-  errors.userName="Email format incorrect"
+  errors.email="Email format incorrect"
 
 }
 if(!formData.role){
-  errors.userName="role required"
+  errors.role="role required"
 }
 if(!formData.terms){
-  errors.userName="terms required"
+  errors.terms="terms required"
 }
+
+return errors
 
   }
 
@@ -63,12 +69,12 @@ if(!formData.terms){
       <div>
         <label>Name:</label>
         <input name='userName' value={formData.userName} onChange={(e)=>handleChange(e)}/>
-        <p style={{color:"red"}}>{errors.userName}</p>
+        <p style={{color:"red"}}>{formErrors.userName}</p>
       </div>
       <div>
         <label>Eamil:</label>
         <input name='email' value={formData.email} onChange={(e)=>handleChange(e)}/>
-        <p style={{color:"red"}}>{errors.email}</p>
+        <p style={{color:"red"}}>{formErrors.email}</p>
       </div>
       <div>
         <label>Role:</label>
@@ -77,19 +83,19 @@ if(!formData.terms){
           <option>Tester</option>
           <option>Recruiter</option>
         </select>
-        <p style={{color:"red"}}>{errors.role}</p>
+        <p style={{color:"red"}}>{formErrors.role}</p>
       </div>
       <div>
         <label>Name:</label>
         <input name='terms' type='checkbox' checked={formData.terms} onChange={(e)=>handleChange(e)}/>
-        <p style={{color:"red"}}>{errors.terms}</p>
+        <p style={{color:"red"}}>{formErrors.terms}</p>
       </div>
 
     </form>
       ):(
 <h2>Successfully loggedIn</h2>
       )}
-
+<button>Login</button>
     </div>
   )
 }
