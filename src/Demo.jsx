@@ -8,11 +8,8 @@ const Demo = () => {
   const [formErrors,setFormErrors]=useState({})
 
   const [isSubmitted,setIsSubmitted]=useState(false)
-  const [step,setStep]=useState(1)
 
 
-const isStep1Valid=formData.Name && formData.email 
-const isStep2Valid=formData.role && formData.terms
 
 const handleChange=(e)=>{
 
@@ -20,6 +17,30 @@ const handleChange=(e)=>{
 
 
   setFormData(prev=>({...prev,[e.target.name]:e.target.value}))
+}
+
+const handleSubmit=()=>{
+  const errors=validate(formData)
+
+  setFormErrors(errors)
+}
+
+const validate=(formData)=>{
+if(!formData.Name){
+  errors.Name="username required"
+}
+if(!formData.email){
+  errors.email="email required"
+}else if(!emailRegex.test(formData.email)){
+  errors.email="email format incorrect"
+
+}
+if(!formData.role){
+  errors.role="role required"
+
+}
+if(!formData.terms){
+  errors.terms="terms required"
 }
 
 if(isSubmitted){
@@ -44,29 +65,18 @@ if(isSubmitted){
   return (
     <form onSubmit={handleSubmit}>
 
-{step===1 && (
-  <div>
 
       <div>
         <label>Name:</label>
         <input  value={formData.Name} name="Name" onChange={handleChange}/>
+        <p style={{color:"red"}}>{formErrors.Name}</p>
       </div>
-      <br></br>
       <div>
         <label>Email:</label>
         <input  value={formData.email} name="email" onChange={handleChange}/>
       </div>
-      <button disabled={!isStep1Valid} onClick={()=>setStep(2)}>Next</button>
-  </div>
 
-)}
-
-{step===2 && (
-
-<div>
-
-      <br></br>
-      <div>
+    <div>
         <label>Role:</label>
         <select name="role" value={formData.role} onChange={handleChange}>
           <option>Developer</option>
@@ -74,17 +84,16 @@ if(isSubmitted){
           <option>Recruiter</option>
         </select>
       </div>
-      <br></br>
+      
       <div>
         <label>Terms:</label>
         <input name="terms" type='checkbox' checked={formData.terms} onChange={handleChange}/>
       </div>
-      <button disabled={!isStep2Valid} onClick={()=>setIsSubmitted(true)}>Login</button>
-      <br></br>
-</div>
-)}
+      <button >Login</button>
+
     </form>
   )
+}
 }
 
 export default Demo
