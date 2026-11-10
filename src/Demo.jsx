@@ -6,6 +6,7 @@ const Demo = () => {
 
   const [formData,setFormData]=useState(userDetails)
   const [formErrors,setFormErrors]=useState({})
+  const [isSubmitted,setIsSubmitted]=useState(false)
 
   const handleChange=(e)=>{
 
@@ -18,6 +19,10 @@ e.preventDefault()
 
 const errors=validate(formData)
 setFormErrors(errors)
+
+if(Object.keys(errors).length===0){
+setIsSubmitted(false)
+}
 
   }
 
@@ -45,7 +50,9 @@ if(!formData.password){
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+{!isSubmitted ?(
+ <form onSubmit={handleSubmit}>
       <div>
         <label>UserName:</label>
         <input name="userName" value={formData.userName} onChange={(e)=>handleChange(e)}/>
@@ -63,6 +70,13 @@ if(!formData.password){
       </div>
       <button>Login</button>
     </form>
+):(
+  <p>Successfully logged in</p>
+)}
+
+    
+   
+    </div>
   )
 }
 
