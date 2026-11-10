@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useReducer, useState } from 'react'
 
 const Demo = () => {
+
+  const userDetails={userName:"",email:"",password:""}
+
+  const [formData,setFormData]=useState(userDetails)
+
   return (
-    <div>
+    <form>
       Hello
-    </div>
+    </form>
   )
 }
 
 export default Demo
-....
+
+
+
