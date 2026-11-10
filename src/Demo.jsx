@@ -5,6 +5,7 @@ const Demo = () => {
   const userDetails={Name:"",email:"",role:"",terms:false}
 
   const [formData,setFormData]=useState(userDetails)
+  const [formErrors,setFormErrors]=useState({})
 
   const [isSubmitted,setIsSubmitted]=useState(false)
   const [step,setStep]=useState(1)
@@ -14,6 +15,10 @@ const isStep1Valid=formData.Name && formData.email
 const isStep2Valid=formData.role && formData.terms
 
 const handleChange=(e)=>{
+
+  
+
+
   setFormData(prev=>({...prev,[e.target.name]:e.target.value}))
 }
 
@@ -37,7 +42,7 @@ if(isSubmitted){
 
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
 
 {step===1 && (
   <div>
@@ -78,7 +83,7 @@ if(isSubmitted){
       <br></br>
 </div>
 )}
-    </div>
+    </form>
   )
 }
 
