@@ -21,7 +21,7 @@ const errors=validate(formData)
 setFormErrors(errors)
 
 if(Object.keys(errors).length===0){
-setIsSubmitted(false)
+setIsSubmitted(true)
 }
 
   }
